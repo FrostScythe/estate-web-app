@@ -14,10 +14,10 @@ const Header = () => {
         <form className="bg-[#e0e7ff] p-2 rounded-lg flex items-center">
           <input
             type="text"
-            placeholder="Search..."
+            placeholder="Search"
             className="bg-transparent focus:outline-none w-24 sm:w-64"
           />
-          <Search className="text-indigo-500" />
+          <Search className="text-indigo-500 cursor-pointer" />
         </form>
         <ul className="flex gap-4 text-indigo-600">
           <Link to ="/"><li className="hidden sm:inline hover:underline cursor-pointer">Home</li></Link>

@@ -1,0 +1,22 @@
+{
+  "name": "estate-project",
+  "version": "1.0.0",
+  "description": "This is a online application for real estate. Where you can rent or buy properties.",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev" : "nodemon api/index.js",
+    "start" : "node api/index.js"
+  },
+  "keywords": [
+    "node.js",
+    "React.js",
+    "express.js",
+    "mongodb"
+  ],
+  "author": "Ayush Maheshwari",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.1"
+  }
+}
