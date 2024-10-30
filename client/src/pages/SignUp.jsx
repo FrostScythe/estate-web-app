@@ -1,7 +1,11 @@
 import { useState } from "react";
 
 const SignOut = () => {
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState({
+    username: "",
+    email: "",
+    password: "",
+  });
 
   const handleChange = (e) => {
     setFormData({
@@ -12,40 +16,55 @@ const SignOut = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const res = await fetch('/api/auth/signup', {
-      method: 'POST',
+    if (!formData.username || !formData.email || !formData.password) {
+      console.error("All fields are required.");
+      return;
+    }
+
+    const res = await fetch("/api/auth/signup", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(formData),
     });
-    const data= await res.json();
-    console.log(data);
+
+    if (!res.ok) {
+      console.error("Error:", await res.text());
+    } else {
+      const data = await res.json();
+      console.log(data);
+    }
   };
+
   console.log(formData);
-  
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <div className="form-container w-[30rem] h-[550px] bg-white shadow-lg rounded-lg p-8">
         <p className="title text-center text-2xl font-bold mb-4">Sign Up</p>
-        <p className="sub-title text-center text-xs text-gray-500 mb-6">We will help you find your dream home</p>
+        <p className="sub-title text-center text-xs text-gray-500 mb-6">
+          We will help you find your dream home
+        </p>
 
         <form className="form flex flex-col gap-5 mb-5" onSubmit={handleSubmit}>
           <input
             type="text"
+            id="username"
             className="input border border-gray-300 rounded-[18px] p-4 focus:outline-none"
             placeholder="Name"
             onChange={handleChange}
           />
           <input
             type="email"
+            id="email"
             className="input border border-gray-300 rounded-[18px] p-4 focus:outline-none"
             placeholder="Email"
             onChange={handleChange}
           />
           <input
             type="password"
+            id="password"
             className="input border border-gray-300 rounded-[18px] p-4 focus:outline-none"
             placeholder="Password"
             onChange={handleChange}
